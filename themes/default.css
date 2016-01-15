@@ -6,6 +6,7 @@
 	border: 1px #ccc solid;
 	border-radius: 4px;
 	min-width:200px;
+	background:white;
 }
 #default-input-match-box li{
 	padding:0px;
