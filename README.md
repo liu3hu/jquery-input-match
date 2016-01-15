@@ -1,8 +1,8 @@
 #jquery-input-match
 
-###这是一个JQuery的插件用于处理input输入框的自动联想
+###jquery-input-match是一个JQuery的插件用于处理根据input输入框内容实时显示匹配的数据条目
 - 提供定制皮肤的方式
-- 待联想的数据可以是静态数据也可以是异步从服务器请求的数据
+- 待匹配的数据可以是静态数据也可以是异步从服务器请求的数据
 - 丰富的参数满足所有的需求
 
 
@@ -21,7 +21,7 @@
 	<input type="text" style="margin-top:100px;margin-left:500px;" name="a" class="input"/>
 	<input type="text" style="margin-top:100px;margin-left:600px;" name="b" class="input"/>
 	<script type="text/javascript">
-		//通过异步请求的数据联想
+		//异步请求的数据作为待匹配的数据
 		$(".input").eq(0).inputMatch({
 			url:"demo.php",
 			timeout:500,
@@ -31,7 +31,7 @@
 			paramName:'x',
 		});
 		
-		//基于静态数据联想
+		//静态数据作为待匹配的数据
 		$(".input").eq(1).inputMatch({
 			data:[
 				{value:1,text:'sfs'},
@@ -57,7 +57,7 @@
 			fillRightNow:false,
 		});
 		
-		//选择后的回调函数
+		//选择数据条目后的回调函数
 		function demo(value,text){
 			alert("您选中了"+text);
 		}
@@ -85,18 +85,18 @@
 | 参数名称 | 参数值 |
 | :----------|:------|
 |skin|皮肤，默认default|
-|data|待联想的静态数据|
-|url|获取联想数据的地址 （data和url两个参数二选一，当两个参数同时有时只处理data的数据）|
+|data|待匹配的静态数据|
+|url|获取待匹配数据数据的地址 （data和url两个参数二选一，当两个参数同时有时只处理data的数据）|
 |asParam|输入内容是否作为url参数（true,false 默认false）（仅有url参数时有效）|
 |paramName|参数名（仅有asParam参数时有效）|
 |repeatRequest|相同url是否重复请求服务器（true,false 默认false）（仅有url参数时有效）|
 |timeout|停止输入后多久从服务器拉取数据 （单位毫秒 默认300）|
-|matchOnFocus|输入框获得焦点时是否触发联想（true,false 默认false）|
-|filter|输入内容是否作为过滤条件（true,false 默认true）|
-|mustSelect|输入框的值是否必须从联想结果选择（true,false 默认false）|
-|maxLength|联想结果的最大显示长度 （默认15,0则显示全部）|
-|fillRightNow|鼠标或上下键在匹配结果上移动时输入框是否实时显示|
-|selectCallback|选择联想结果时的回调函数 （默认空）|
+|showOnFocus|输入框获得焦点时是否触发显示数据列表（true,false 默认false）|
+|match|数据列表是否只显示与输入内容相匹配的条目（true,false 默认true）|
+|mustSelect|输入框的值是否必须从数据列表中选择（true,false 默认false）|
+|maxLength|数据列表的最大显示长度 （默认15,0则显示全部）|
+|fillRightNow|鼠标或上下键在数据列表上移动时输入框是否实时显示|
+|selectCallback|选择数据时的回调函数 （默认空）|
 
 - 含特殊符的数据请处理后传入 如 ' " < > 等
 - 参数data或服务器返回的数据(json)的格式
