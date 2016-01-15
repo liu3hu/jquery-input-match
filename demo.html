@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>输入框自动提示</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="jquery-input-match.js"></script>
+	
+</head>
+<body>
+	<input type="text" style="margin-top:100px;margin-left:500px;" name="a" id="input1"/>
+    <input type="text" style="margin-top:100px;margin-left:600px;" name="b" id="input2"/>
+
+	<script type="text/javascript">
+        //通过异步请求的数据联想
+        $("#input1").inputMatch({
+            url:"demo.php",
+            timeout:500,
+            selectCallback:'demo',
+            mustSelect:false,
+            asParam:true,
+            paramName:'x',
+            fillRightNow:true,
+        });
+
+        //基于静态数据联想
+        $("#input2").inputMatch({
+            data:[
+                {value:1,text:'sfs'},
+                {value:1,text:'明天dfgd啊实asdaadasdada打实大'},
+                {value:1,text:'dgadfgddas'},
+                {value:1,text:'qeg'},
+                {value:1,text:'sfddfdad'},
+                {value:1,text:'sfddfdad'},
+                {value:1,text:'xbgg'},
+                {value:1,text:'yudfgdghf'},
+                {value:1,text:'cnsdffs'},
+                {value:1,text:'rgdgdf'},
+                {value:1,text:'iokjdfgdkhj'},
+                {value:1,text:'qwqdfdada'},
+                {value:1,text:'ujmgng'},
+                {value:1,text:'cbfdfgdghn'},
+            ],
+            timeout:500,
+            selectCallback:'demo',
+            mustSelect:false,
+            filter:false,
+            matchOnFocus:true,
+            fillRightNow:false,
+        });
+
+        //选择后的回调函数
+        function demo(value,text){
+            alert("您选中了"+text);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+#default-input-match-box{
+	padding:0px;
+	margin:0px;
+	list-style: none;
+	border: 1px #ccc solid;
+	border-radius: 4px;
+	min-width:200px;
+}
+#default-input-match-box li{
+	padding:0px;
+	margin:0px;
+	cursor: pointer;
+	border-top: 1px #ccc solid;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	padding:5px 10px;
+	color:#666;
+	font-size:12px;
+}
+#default-input-match-box li.on{
+	background: #ddd;
+}
