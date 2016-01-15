@@ -370,7 +370,7 @@
 				console.log(public_options[countx].fillRightNow,public_options[countx].select_item_position)
 				if(public_options[countx].select_item_position!==''){
 					console.log(1212);
-					inputMatchItemSelect($("#"+inputMatchBoxId+" li").eq(public_options[countx].select_item_position).attr('v-value'),$("#"+inputMatchBoxId+" li").eq(public_options[countx].select_item_position).text(),public_options[countx].callbackFun);
+					inputMatchItemSelect($("#"+inputMatchBoxId+" li").eq(public_options[countx].select_item_position).attr('value-v'),$("#"+inputMatchBoxId+" li").eq(public_options[countx].select_item_position).text(),public_options[countx].callbackFun);
 				}
 				return false;
 			}else{
