@@ -16,7 +16,7 @@
 	 * 		matchOnFocus:   '输入框获得焦点时是否触发联想（true,false 默认false）',
 	 * 		filter:         '输入内容是否作为过滤条件（true,false 默认true）',
 	 * 		mustSelect:     '输入框的值是否必须从联想结果选择（true,false 默认false）',
-	 * 		maxlength:      '联想结果的最大显示长度 （默认15,0则显示全部）',
+	 * 		maxLength:      '联想结果的最大显示长度 （默认15,0则显示全部）',
 	 * 		fillRightNow:   '鼠标或上下键在匹配结果上移动时输入框是否实时显示',
 	 * 		selectCallback: '选择联想结果时的回调函数 （默认空）'
 	 * 	}
@@ -63,7 +63,7 @@
 		var default_options={
 			skin:'default',
 			mustSelect:false,
-			maxlength:15,
+			maxLength:15,
 			timeout:300,
 			matchOnFocus:false,
 			asParam:false,
@@ -88,11 +88,11 @@
 			timeout=0;
 		}
 
-		if(options.maxlength==undefined){
-			var maxlength=default_options.maxlength;
+		if(options.maxLength==undefined){
+			var maxLength=default_options.maxLength;
 		}else{
-			var maxlength=parseInt(options.maxlength);
-			var maxlength=isNaN(maxlength)?default_options.maxlength:maxlength;
+			var maxLength=parseInt(options.maxLength);
+			var maxLength=isNaN(maxLength)?default_options.maxLength:maxLength;
 		}
 
 		var matchOnFocus=(options.matchOnFocus!=undefined && (options.matchOnFocus===false || options.matchOnFocus===true))?options.matchOnFocus:default_options.matchOnFocus;
@@ -258,7 +258,7 @@
 		var showData=function(){
 			blurHandle();
 
-			var length=maxlength<datas.length?maxlength:datas.length;
+			var length=maxLength<datas.length?maxLength:datas.length;
 			var n=1;
 			var inputval=that.val();
 			for(i in datas){
