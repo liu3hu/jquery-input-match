@@ -1,6 +1,6 @@
 #jquery-input-match
 
-###jquery-input-match是一个JQuery的插件用于处理根据input输入框内容实时显示匹配的数据条目
+###jquery-input-match是一个JQuery的插件用于处理根据input输入框内容实时显示与之匹配的数据条目
 - 提供定制皮肤的方式
 - 待匹配的数据可以是静态数据也可以是异步从服务器请求的数据
 - 丰富的参数满足所有的需求
