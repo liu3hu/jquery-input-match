@@ -94,7 +94,7 @@
 |matchOnFocus|输入框获得焦点时是否触发联想（true,false 默认false）|
 |filter|输入内容是否作为过滤条件（true,false 默认true）|
 |mustSelect|输入框的值是否必须从联想结果选择（true,false 默认false）|
-|maxlength|联想结果的最大显示长度 （默认15,0则显示全部）|
+|maxLength|联想结果的最大显示长度 （默认15,0则显示全部）|
 |fillRightNow|鼠标或上下键在匹配结果上移动时输入框是否实时显示|
 |selectCallback|选择联想结果时的回调函数 （默认空）|
 
@@ -122,7 +122,7 @@
 	//your style
 }
 
-#default-input-match-box li.on{
+#diy-input-match-box li.on{
 	//your style
 }
 ```
