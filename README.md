@@ -86,17 +86,17 @@
 | :----------|:------|
 |skin|皮肤，默认default|
 |data|待匹配的静态数据|
-|url|获取待匹配数据数据的地址 （data和url两个参数二选一，当两个参数同时传入时只处理data的数据）|
-|asParam|输入内容是否作为url参数（true,false 默认false）（与url参数一同传入时才生效）|
-|paramName|参数名（与asParam参数一同传入时才生效）|
-|repeatRequest|相同url是否重复请求服务器（true,false 默认false）（与url参数一同传入时才生效）|
-|timeout|停止输入后多久从服务器拉取数据 （单位毫秒 默认300）|
-|showOnFocus|输入框获得焦点时是否触发显示数据列表（true,false 默认false）|
-|match|数据列表是否只显示与输入内容相匹配的条目（true,false 默认true）|
-|mustSelect|输入框的值是否必须从数据列表中选择（true,false 默认false）|
-|maxLength|数据列表的最大显示长度 （默认15,0则显示全部）|
+|url|获取待匹配数据数据的地址 (data和url两个参数二选一，当两个参数同时传入时只处理data的数据)|
+|asParam|输入内容是否作为url参数:true,false 默认false (与url参数一同传入时才生效)|
+|paramName|参数名 (与asParam参数一同传入时才生效)|
+|repeatRequest|相同url是否重复请求服务器:true,false 默认false (与url参数一同传入时才生效)|
+|timeout|停止输入后多久从服务器拉取数据 (单位毫秒 默认300)|
+|showOnFocus|输入框获得焦点时是否触发显示数据列表:true,false 默认false|
+|match|数据列表是否只显示与输入内容相匹配的条目:true,false 默认true|
+|mustSelect|输入框的值是否必须从数据列表中选择:true,false 默认false|
+|maxLength|数据列表的最大显示长度 (默认15,0则显示全部)|
 |fillRightNow|鼠标或上下键在数据列表上移动时输入框是否实时显示|
-|selectCallback|选择数据时的回调函数 （默认空）|
+|selectCallback|选择数据时的回调函数 (默认空)|
 
 - 含特殊符的数据请处理后传入 如 ' " < > 等
 - 参数data或服务器返回的数据(json)的格式
