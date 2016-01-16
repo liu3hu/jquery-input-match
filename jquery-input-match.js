@@ -133,7 +133,7 @@
 		if(theme_load_flag){
 			$("head").append("<link rel='stylesheet' input-match-skin='"+skin+"' type='text/css' href='"+themePath+"'>");
 		}
-		inputMatchBoxId=skin+'-input-match-box';
+		var inputMatchBoxId=skin+'-input-match-box';
 
 
 		//OK
@@ -304,7 +304,7 @@
 			//上下键移动后使用回车选择
 			if(e.keyCode==13){
 				if(that.select_item_position!==''){
-					inputMatchItemSelect(current_count,$("#"+inputMatchBoxId+" li").eq(that.select_item_position).attr('value-v'),$("#"+inputMatchBoxId+" li").eq(that.select_item_position).text(),callbackFun);
+					inputMatchItemSelect(current_count,$(".input-match-box li").eq(that.select_item_position).attr('value-v'),$(".input-match-box li").eq(that.select_item_position).text(),callbackFun);
 				}
 			}else{
 				//监听上下键移动
@@ -312,8 +312,8 @@
 					moveSelectInputMatchItem(current_count,e.keyCode);
 				}else{
 					//避免快速输入时 列表显示还停留在之前的匹配数据  异步请求出现延时时会出现此情况
-					if($("#"+inputMatchBoxId).length>0){
-						$("#"+inputMatchBoxId).hide();
+					if($(".input-match-box").length>0){
+						$(".input-match-box").hide();
 					}
 					timestamp=new Date().getTime();
 
@@ -386,7 +386,6 @@
 
 	var count=-1;
 	var objects=[];
-	var inputMatchBoxId='';
 
 	var current_object='';
 
@@ -401,14 +400,14 @@
 	window.moveSelectInputMatchItem=function(obj_count,keycode){
 		getCurrentObject(obj_count);
 
-		if($("#"+inputMatchBoxId).length>0 && (keycode==38 || keycode==40)){
+		if($(".input-match-box").length>0 && (keycode==38 || keycode==40)){
 			var mix_position=0;
-			var max_position=$("#"+inputMatchBoxId+" li").length-1;
+			var max_position=$(".input-match-box li").length-1;
 
 			var new_position=current_object.select_item_position===''?0:(keycode==38?current_object.select_item_position-1:current_object.select_item_position+1);
 			
 			new_position=new_position<0?0:(new_position>max_position?max_position:new_position);
-			moveOverInputMatchItem(obj_count,$("#"+inputMatchBoxId+" li").eq(new_position));
+			moveOverInputMatchItem(obj_count,$(".input-match-box li").eq(new_position));
 		}
 	}
 
@@ -421,9 +420,9 @@
 			current_object.on_match_box=false;
 			if(!current_object.fillRightNow){
 				current_object.select_item_position=current_object.current_match_item_position;
-				$("#"+inputMatchBoxId+" li").removeClass('on');
+				$(".input-match-box li").removeClass('on');
 				if(current_object.current_match_item_position!==''){
-					$("#"+inputMatchBoxId+" li").eq(current_object.current_match_item_position).addClass('on');
+					$(".input-match-box li").eq(current_object.current_match_item_position).addClass('on');
 				}
 			}
 		}
@@ -433,10 +432,10 @@
 	window.moveOverInputMatchItem=function(obj_count,obj){
 		getCurrentObject(obj_count);
 
-		$("#"+inputMatchBoxId+" li").removeClass('on');
+		$(".input-match-box li").removeClass('on');
 		obj.addClass('on');
 
-		current_object.select_item_position=$("#"+inputMatchBoxId+" li").index(obj);
+		current_object.select_item_position=$(".input-match-box li").index(obj);
 
 		if(current_object.fillRightNow){
 			current_object.current_match_item_position=current_object.select_item_position;
@@ -464,9 +463,9 @@
 	function init(obj_count){
 		current_object=objects[obj_count];
 
-		if($("#"+inputMatchBoxId).length>0){
-			$("#"+inputMatchBoxId).remove();
-			$("#"+inputMatchBoxId+" li").removeClass('on');
+		if($(".input-match-box").length>0){
+			$(".input-match-box").remove();
+			$(".input-match-box li").removeClass('on');
 		}
 		current_object.on_match_box=false;
 		current_object.input_queue=[];
