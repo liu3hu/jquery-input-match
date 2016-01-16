@@ -14,8 +14,8 @@
 <head>
 	<title>输入框自动提示</title>
 	<meta charset="utf-8">
-	<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
-	<script type="text/javascript" src="jquery-input-match.js"></script>
+	<script type="text/javascript" src="../jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="../jquery-input-match.min.js"></script>
 </head>
 <body>
 	<input type="text" style="margin-top:100px;margin-left:500px;" name="a" class="input"/>
