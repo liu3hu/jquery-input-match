@@ -111,22 +111,22 @@
 ```
 
 ###皮肤制作指南
-- themes文件夹内新建css文件 diy.css
-- diy.css的格式如下
+- themes文件夹内新建css文件 styleName.css
+- styleName.css的格式如下
 
 ```css
 @CHARSET "UTF-8";
-#diy-input-match-box{
+#styleName-input-match-box{
 	//your style
 }
 
-#diy-input-match-box li{
+#styleName-input-match-box li{
 	//your style
 }
 
-#diy-input-match-box li.on{
+#styleName-input-match-box li.on{
 	//your style
 }
 ```
 
-- 传入皮肤参数  {skin:diy}
+- 传入皮肤参数  {skin:styleName}
