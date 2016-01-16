@@ -127,7 +127,7 @@
 		for(var i=0;i<$("head link").length;i++){
 			if($("head link").eq(i).attr('input-match-skin')!=undefined && $("head link").eq(i).attr('input-match-skin')==skin){
 				theme_load_flag=false;
-				break
+				break;
 			}
 		}
 		if(theme_load_flag){
@@ -289,6 +289,15 @@
 		}
 
 
+		//回车选中配件时阻止提交表单的默认行为  如需回车选中后提交表单请在回调函数中处理
+		this.keydown(function(e){
+			if(e.keyCode==13){
+				e.preventDefault();
+				e.stopPropagation();
+				return false;
+			}
+		})
+
 		//OK
 		//监听键盘输入
 		this.keyup(function(e){
@@ -297,7 +306,6 @@
 				if(that.select_item_position!==''){
 					inputMatchItemSelect(current_count,$("#"+inputMatchBoxId+" li").eq(that.select_item_position).attr('value-v'),$("#"+inputMatchBoxId+" li").eq(that.select_item_position).text(),callbackFun);
 				}
-				return false;
 			}else{
 				//监听上下键移动
 				if(e.keyCode==38 || e.keyCode==40 ){
@@ -333,6 +341,9 @@
 					}
 				}
 			}
+			e.preventDefault();
+			e.stopPropagation();
+			return false;
 		})
 
 
@@ -498,7 +509,6 @@
 					return false;
 				}else{
 					/*
-					
 					过滤数据
 					var value=d[i]['value'].toString();
 					var valuex=value.replace(/'/g, "\'").replace(/"/g, '\"');
