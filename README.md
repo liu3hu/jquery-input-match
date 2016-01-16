@@ -86,10 +86,10 @@
 | :----------|:------|
 |skin|皮肤，默认default|
 |data|待匹配的静态数据|
-|url|获取待匹配数据数据的地址 （data和url两个参数二选一，当两个参数同时有时只处理data的数据）|
-|asParam|输入内容是否作为url参数（true,false 默认false）（仅有url参数时有效）|
-|paramName|参数名（仅有asParam参数时有效）|
-|repeatRequest|相同url是否重复请求服务器（true,false 默认false）（仅有url参数时有效）|
+|url|获取待匹配数据数据的地址 （data和url两个参数二选一，当两个参数同时传入时只处理data的数据）|
+|asParam|输入内容是否作为url参数（true,false 默认false）（与url参数一同传入时才生效）|
+|paramName|参数名（与asParam参数一同传入时才生效）|
+|repeatRequest|相同url是否重复请求服务器（true,false 默认false）（与url参数一同传入时才生效）|
 |timeout|停止输入后多久从服务器拉取数据 （单位毫秒 默认300）|
 |showOnFocus|输入框获得焦点时是否触发显示数据列表（true,false 默认false）|
 |match|数据列表是否只显示与输入内容相匹配的条目（true,false 默认true）|
