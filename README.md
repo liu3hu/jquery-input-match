@@ -82,21 +82,21 @@
 
 ###参数说明
 
-| 参数名称 | 参数值 |
-| :----------|:------|
-|skin|皮肤，默认default|
-|data|待匹配的静态数据|
-|url|获取待匹配数据数据的地址 (data和url两个参数二选一，当两个参数同时传入时只处理data的数据)|
-|asParam|输入内容是否作为url参数:true,false 默认false (与url参数一同传入时才生效)|
-|paramName|参数名 (与asParam参数一同传入时才生效)|
-|repeatRequest|相同url是否重复请求服务器:true,false 默认false (与url参数一同传入时才生效)|
-|timeout|停止输入后多久从服务器拉取数据 (单位毫秒 默认300)|
-|showOnFocus|输入框获得焦点时是否触发显示数据列表:true,false 默认false|
-|match|数据列表是否只显示与输入内容相匹配的条目:true,false 默认true|
-|mustSelect|输入框的值是否必须从数据列表中选择:true,false 默认false|
-|maxLength|数据列表的最大显示长度 (默认15,0则显示全部)|
-|fillRightNow|鼠标或上下键在数据列表上移动时输入框是否实时显示|
-|selectCallback|选择数据时的回调函数 (默认空)|
+| 参数名称 |是否必填|可选值|默认值| 参数值 |
+| :----------|:------|:------|:------|:------|
+|skin|否||default|皮肤，默认default|
+|data|无url参数时必填|||待匹配的静态数据|
+|url|无data参数时必填|||获取待匹配数据数据的地址 (data和url两个参数二选一，当两个参数同时传入时只处理data的数据)|
+|asParam|否|true,false|false|输入内容是否作为url参数:true,false 默认false (与url参数一同传入时才生效)|
+|paramName|否|||参数名 (与asParam参数一同传入时才生效)|
+|repeatRequest|否|true,false|false|相同url是否重复请求服务器:true,false 默认false (与url参数一同传入时才生效)|
+|timeout|否|0或正整数|300|停止输入后多久从服务器拉取数据 (单位毫秒 默认300)|
+|showOnFocus|否|true,false|false|输入框获得焦点时是否触发显示数据列表:true,false 默认false|
+|match|否|true,false|false|数据列表是否只显示与输入内容相匹配的条目:true,false 默认true|
+|mustSelect|否|true,false|false|输入框的值是否必须从数据列表中选择:true,false 默认false|
+|maxLength|否|0或正整数|15|数据列表的最大显示长度 (0则显示全部)|
+|fillRightNow|否|true,false|flase|鼠标或上下键在数据列表上移动时输入框是否实时显示|
+|selectCallback|否|||选择数据时的回调函数|
 
 #提示
 - 当input控件在表单内，使用上下键选择数据后回车选中时，会阻止表单提交的默认行为，如需在选中后提交表单请在回调函数中处理
