@@ -86,7 +86,7 @@
 | :----------|:------|:------|:------|:------|
 |skin|否||default|皮肤，默认default|
 |data|无url参数时必填|||待匹配的静态数据|
-|url|无data参数时必填|||获取待匹配数据数据的地址 (data和url两个参数二选一，当两个参数同时传入时只处理data的数据)|
+|url|无data参数时必填|||获取待匹配数据的地址 (data和url两个参数二选一，当两个参数同时传入时只处理data的数据)|
 |asParam|否|true,false|false|输入内容是否作为url参数(与url参数一同传入时才生效)|
 |paramName|否|||参数名 (与asParam参数一同传入时才生效)|
 |repeatRequest|否|true,false|false|相同url是否重复请求服务器 (与url参数一同传入时才生效)|
