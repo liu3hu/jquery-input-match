@@ -1,35 +1,9 @@
+/**
+ * 作者 davidliu 769049825@qq.com
+ * 源码地址：https://github.com/davidliu0913/jquery-input-match
+ * 使用说明：https://github.com/davidliu0913/jquery-input-match/blob/master/README.md
+ */
 (function($){
-	/**
-	 * 作者 davidliu 769049825@qq.com
-	 * 代码地址：https://github.com/davidliu0913/jquery-input-match
-	 * 
-	 * 输入框自动联想
-	 * options 参数说明 
-	 * 	{
-	 * 		skin:           '皮肤，默认default'
-	 * 		data:           '待匹配的静态数据',
-	 * 		url:            '获取待匹配数据数据的地址 (data和url两个参数二选一，当两个参数同时传入时只处理data的数据)',
-	 *		asParam:        '输入内容是否作为url参数:true,false 默认false (与url参数一同传入时才生效)',
-	 *		paramName		'参数名 (与asParam参数一同传入时才生效)'
-	 *		repeatRequest:  '相同url是否重复请求服务器:true,false 默认false (与url参数一同传入时才生效)',
-	 * 		timeout:        '停止输入后多久从服务器拉取数据 (单位毫秒 默认300)',
-	 * 		showOnFocus:    '输入框获得焦点时是否触发显示数据列表:true,false 默认false',
-	 * 		match:          '数据列表是否只显示与输入内容相匹配的条目:true,false 默认true',
-	 * 		mustSelect:     '输入框的值是否必须从数据列表中选择:true,false 默认false',
-	 * 		maxLength:      '数据列表的最大显示长度 (默认15,0则显示全部)',
-	 * 		fillRightNow:   '鼠标或上下键在数据列表上移动时输入框是否实时显示',
-	 * 		selectCallback: '选择数据时的回调函数 (默认空)'
-	 * 	}
-	 * 	参数data或服务器返回的数据(json)的格式为数组
-	 * 	[
-	 * 		{value:1,text:'第一名'},
-	 * 		{value:2,text:'第二名'},
-	 * 		{value:3,text:'第三名'}
-	 * 	]
-	 * @param  {object} options 
-	 * @return {void}
-	 */
-	
 	$.fn.inputMatch=function(options){
 		count++;
 		objects.push(this);
@@ -41,8 +15,9 @@
 			skin:'default',
 			mustSelect:false,
 			maxLength:15,
+			moreDataTip:'',
 			timeout:300,
-			showOnFocus:false,
+			matchOnFocus:false,
 			asParam:false,
 			match:true,
 			repeatRequest:false,
@@ -82,6 +57,8 @@
 			var maxLength=isNaN(maxLength)?default_options.maxLength:maxLength;
 		}
 
+		var moreDataTip= options.moreDataTip==undefined?default_options.moreDataTip:options.moreDataTip;
+
 		var showOnFocus=(options.showOnFocus!=undefined && (options.showOnFocus===false || options.showOnFocus===true))?options.showOnFocus:default_options.showOnFocus;
 
 		var mustSelect=(options.mustSelect!=undefined && (options.mustSelect===false || options.mustSelect===true))?options.mustSelect:default_options.mustSelect;
@@ -91,6 +68,9 @@
 		var paramName=asParam?options.paramName:'';
 
 		var match=(options.match!=undefined && (options.match===false || options.match===true))?options.match:default_options.match;
+
+		var matchOnFocus=(options.matchOnFocus!=undefined && (options.matchOnFocus===false || options.matchOnFocus===true))?options.matchOnFocus:match;
+
 
 		var repeatRequest=(options.repeatRequest!=undefined && (options.repeatRequest===false || options.repeatRequest===true))?options.repeatRequest:default_options.repeatRequest;
 
@@ -102,6 +82,8 @@
 		var request_datas=[];
 		//输入框焦点状态
 		var onFocus=false;
+		//
+		var onceFocus=false;
 		var timestamp=0;
 		//是否正在请求标识
 		var requesting=0;
@@ -204,23 +186,44 @@
 			init(current_count);
 
 			var length=maxLength<datas.length?maxLength:datas.length;
-			var n=1;
+			var n=0;
 			var inputval=that.val();
+			var hasMoreDataTip=false;
 			for(i in datas){
-				if(n<=length){
+				if(n<length){
 					var item=datas[i];
-					if(match && inputval!=''){
-						if(item.text.indexOf(inputval)!==-1){
+
+					//处理获取焦点时
+					if(onceFocus && showOnFocus){
+						if(matchOnFocus && inputval!=''){
+							if(item.text.indexOf(inputval)!==-1){
+								buildDom(item,n);
+								n++;
+							}
+						}else{
 							buildDom(item,n);
 							n++;
 						}
 					}else{
-						buildDom(item,n);
-						n++;
+						//处理输入时
+						if(match && inputval!=''){
+							if(item.text.indexOf(inputval)!==-1){
+								buildDom(item,n);
+								n++;
+							}
+						}else{
+							buildDom(item,n);
+							n++;
+						}
 					}
 				}else{
+					hasMoreDataTip=true;
 					break;
 				}
+			}
+
+			if(hasMoreDataTip && moreDataTip!=''){
+				that.html=that.html+"<li more-data-tip='1'>"+moreDataTip+"</li>";
 			}
 
 			if(that.html!=''){
@@ -231,6 +234,7 @@
 				that.html="<ul id='"+inputMatchBoxId+"' class='input-match-box' onmouseleave='moveOnInputMatchBox("+current_count+",0)' onmouseenter='moveOnInputMatchBox("+current_count+",1)' style='position:absolute;top:"+top+"px;left:"+left+"px'>"+that.html+"</ul>";
 				$('body').append(that.html);
 			}
+			onceFocus=false;
 		}
 
 
@@ -240,14 +244,13 @@
 			//current_match_item_no===''用于列表中有相同的数据只匹配第一条
 			if(inputval==item.text && that.current_match_item_position===''){
 				var classx='class="on"';
-				that.current_match_item_position=that.select_item_position=n-1;
+				that.current_match_item_position=that.select_item_position=n;
 			}else{
 				var classx="";
 			}
 
-			var style=n==1?'style="border:none"':'';
+			var style=n==0?'style="border:none"':'';
 			that.html=that.html+'<li '+classx+' onclick="inputMatchItemSelect('+current_count+',\''+item.value+'\',\''+item.text+'\',\''+callbackFun+'\')" onmouseover="moveOverInputMatchItem('+current_count+',$(this))" value-v="'+item.value+'" '+style+'>'+item.text+'</li>';
-			n++;
 		} 
 
 
@@ -350,6 +353,7 @@
 		//OK
 		//监听获得焦点
 		this.focus(function(e){
+			onceFocus=true;
 			onFocus=true;
 			if(showOnFocus){
 				if(options.data!=undefined ){
@@ -406,8 +410,13 @@
 
 			var new_position=current_object.select_item_position===''?0:(keycode==38?current_object.select_item_position-1:current_object.select_item_position+1);
 			
-			new_position=new_position<0?0:(new_position>max_position?max_position:new_position);
-			moveOverInputMatchItem(obj_count,$(".input-match-box li").eq(new_position));
+			console.log($(".input-match-box li").eq(new_position).attr('more-data-tip'));
+			if($(".input-match-box li").eq(new_position).attr('more-data-tip')==undefined){
+				new_position=new_position<0?0:(new_position>max_position?max_position:new_position);
+				moveOverInputMatchItem(obj_count,$(".input-match-box li").eq(new_position));
+			}
+
+			
 		}
 	}
 
