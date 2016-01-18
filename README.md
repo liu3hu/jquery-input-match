@@ -96,7 +96,7 @@
 |match|否|true,false|true|数据列表是否只显示与输入内容相匹配的条目|
 |mustSelect|否|true,false|false|输入框的值是否必须从数据列表中选择|
 |maxLength|否|0或正整数|15|数据列表的最大显示长度 (0则显示全部)|
-|moreDataTip|否||'请输入更多获取更精确的结果'|当匹配上的数据条数大于maxLength时显示的提示的信息|
+|moreDataTip|否|||当匹配上的数据条数大于maxLength时显示的提示的信息|
 |fillRightNow|否|true,false|flase|鼠标或上下键在数据列表上移动时输入框是否实时显示|
 |selectCallback|否|||选择数据时的回调函数|
 
