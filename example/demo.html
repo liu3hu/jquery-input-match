@@ -4,7 +4,7 @@
 	<title>输入框自动提示</title>
 	<meta charset="utf-8">
 	<script type="text/javascript" src="../jquery-1.10.2.min.js"></script>
-	<script type="text/javascript" src="../jquery-input-match.min.js"></script>
+	<script type="text/javascript" src="../jquery-input-match.js"></script>
 	
 </head>
 <body>
@@ -44,8 +44,8 @@
             timeout:500,
             selectCallback:'demo',
             mustSelect:false,
-            match:false,
-            showOnFocus:true,
+            match:true,
+            showOnFocus:false,
             fillRightNow:false,
         });
 

@@ -8,7 +8,7 @@
 		count++;
 		objects.push(this);
 		var current_count=count;
-
+		var current_file_name='jquery-input-match.js';
 
 		/*********定义默认参数*********/
 		var default_options={
@@ -104,7 +104,7 @@
 
 		/**********皮肤处理*********/
 		var skin=options.skin==undefined?'default':options.skin;
-		var themePath=currentPath('jquery-input-match.js')+"themes/"+skin+".css";
+		var themePath=currentPath(current_file_name)+"themes/"+skin+".css";
 		var theme_load_flag=true;
 		for(var i=0;i<$("head link").length;i++){
 			if($("head link").eq(i).attr('input-match-skin')!=undefined && $("head link").eq(i).attr('input-match-skin')==skin){
@@ -207,7 +207,9 @@
 					}else{
 						//处理输入时
 						if(match && inputval!=''){
-							if(item.text.indexOf(inputval)!==-1){
+							var text_t=item.text.toLowerCase();
+							var inputval_t=inputval.toLowerCase();
+							if(text_t.indexOf(inputval_t)!==-1){
 								buildDom(item,n);
 								n++;
 							}
@@ -410,13 +412,10 @@
 
 			var new_position=current_object.select_item_position===''?0:(keycode==38?current_object.select_item_position-1:current_object.select_item_position+1);
 			
-			console.log($(".input-match-box li").eq(new_position).attr('more-data-tip'));
 			if($(".input-match-box li").eq(new_position).attr('more-data-tip')==undefined){
 				new_position=new_position<0?0:(new_position>max_position?max_position:new_position);
 				moveOverInputMatchItem(obj_count,$(".input-match-box li").eq(new_position));
 			}
-
-			
 		}
 	}
 
