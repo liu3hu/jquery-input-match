@@ -122,7 +122,8 @@
 		//验证输入内容是否与数据列表匹配
 		var matchCheck=function(){
 			var inputVal=that.val();
-			for(i in datas){
+			var d_length=datas.length;
+			for(var i=0;i<d_length;i++){
 				if(inputVal==datas[i]['text']){
 					return true;
 				}
@@ -189,7 +190,9 @@
 			var n=0;
 			var inputval=that.val();
 			var hasMoreDataTip=false;
-			for(i in datas){
+
+			var d_length=datas.length;
+			for(var i=0;i<d_length;i++){
 				if(n<length){
 					var item=datas[i];
 
@@ -510,7 +513,8 @@
 	//验证数据格式
 	function datasCheck(d){
 		if(isArray(d)){
-			for(i in d){
+			var d_length=d.length;
+			for(var i=0;i<d_length;i++){
 				if(d[i]['text']==undefined || d[i]['value']==undefined ){
 					console.log('数据格式错误');
 					return false;
