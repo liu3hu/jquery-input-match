@@ -8,6 +8,8 @@
 	min-width:200px;
 	background:white;
 	z-index: 20000000;
+	max-height: 300px;
+	overflow-y: auto;
 }
 #default-input-match-box li{
 	padding:0px;
