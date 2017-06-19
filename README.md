@@ -1,12 +1,12 @@
-#jquery-input-match
+# jquery-input-match
 
-###jquery-input-match是一个JQuery的插件用于处理根据input输入框内容实时显示与之匹配的数据条目
+### jquery-input-match是一个JQuery的插件用于处理根据input输入框内容实时显示与之匹配的数据条目
 - 提供定制皮肤的方式
 - 待匹配的数据可以是静态数据也可以是异步从服务器请求的数据
 - 丰富的参数满足所有的需求
 
 
-###使用说明
+### 使用说明
 
 前端 HTML示例
 ```
@@ -80,7 +80,7 @@
 ```
 
 
-###参数说明
+### 参数说明
 
 | 参数名称 |是否必填|可选值|默认值| 参数值 |
 | :----------|:------|:------|:------|:------|
@@ -95,15 +95,17 @@
 |matchOnFocus|否|true,false|false|获得焦点时是否根据输入框内容匹配显示数据列表 (与showOnFocus参数一同传入时才生效)|
 |match|否|true,false|true|数据列表是否只显示与输入内容相匹配的条目|
 |mustSelect|否|true,false|false|输入框的值是否必须从数据列表中选择|
-|maxLength|否|0或正整数|15|数据列表的最大显示长度 (0则显示全部)|
+|maxLength|否|0或正整数|0|数据列表的最大显示长度 (0则显示全部)|
 |moreDataTip|否|||匹配上的数据条数大于maxLength时显示的提示的信息|
 |fillRightNow|否|true,false|flase|鼠标或上下键在数据列表上移动时输入框是否实时显示|
 |selectCallback|否|||选择数据时的回调函数|
 
-#提示
+# 提示
 - 当input控件在表单内，使用上下键选择数据后回车选中时，会阻止表单提交的默认行为，如需在选中后提交表单请在回调函数中处理
 - 含特殊符的数据请处理后传入 如 ' " < > 等
 - 参数data或服务器返回的数据(json)的格式
+- selectCallback 回调函数接收两个参数 value和text
+- 选中后text内容赋值到输入控件
 ```json
 [
 	{value:1,text:'第一名'},
@@ -112,7 +114,7 @@
 ]
 ```
 
-###皮肤制作指南
+### 皮肤制作指南
 - themes文件夹内新建css文件 styleName.css
 - styleName.css的格式如下
 

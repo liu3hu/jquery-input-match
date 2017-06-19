@@ -1,7 +1,7 @@
 /**
  * 作者 davidliu 769049825@qq.com
- * 源码地址：https://github.com/davidliu0913/jquery-input-match
- * 使用说明：https://github.com/davidliu0913/jquery-input-match/blob/master/README.md
+ * 源码地址：https://github.com/fearotor/jquery-input-match
+ * 使用说明：https://github.com/fearotor/jquery-input-match/blob/master/README.md
  */
 (function($){
 	$.fn.inputMatch=function(options){
@@ -14,7 +14,7 @@
 		var default_options={
 			skin:'default',
 			mustSelect:false,
-			maxLength:15,
+			maxLength:0,
 			moreDataTip:'',
 			timeout:300,
 			matchOnFocus:false,
@@ -156,7 +156,7 @@
 					if(repeatRequest || (!repeatRequest && request_datas[request_data_key]==undefined) ){
 						requesting=1;
 						$.getJSON(
-							options.url, 
+							options.url,
 							p,
 							function(json){
 								requesting=0;
@@ -186,7 +186,7 @@
 		var showData=function(){
 			init(current_count);
 
-			var length=maxLength<datas.length?maxLength:datas.length;
+			var length=(maxLength>0 && maxLength<datas.length)?maxLength:datas.length;
 			var n=0;
 			var inputval=that.val();
 			var hasMoreDataTip=false;
@@ -256,7 +256,7 @@
 
 			var style=n==0?'style="border:none"':'';
 			that.html=that.html+'<li '+classx+' onclick="inputMatchItemSelect('+current_count+',\''+item.value+'\',\''+item.text+'\',\''+callbackFun+'\')" onmouseover="moveOverInputMatchItem('+current_count+',$(this))" value-v="'+item.value+'" '+style+'>'+item.text+'</li>';
-		} 
+		}
 
 
 		//定时器
@@ -382,7 +382,7 @@
 			if(!that.on_match_box){
 				if(mustSelect){
 					if(datas.length>0 && matchCheck()){
-					
+
 					}else{
 						that.val('');
 					}
@@ -401,7 +401,7 @@
 	//select_item_position  鼠标或上下键当前指向的数据条目位置
 	//current_match_item_position 与输入框内容完全匹配的数据条目的位置
 	//on_match_box 当前鼠标是否在数据列表上
-	
+
 
 	//dom操作函数  供全局使用
 
@@ -414,7 +414,7 @@
 			var max_position=$(".input-match-box li").length-1;
 
 			var new_position=current_object.select_item_position===''?0:(keycode==38?current_object.select_item_position-1:current_object.select_item_position+1);
-			
+
 			if($(".input-match-box li").eq(new_position).attr('more-data-tip')==undefined){
 				new_position=new_position<0?0:(new_position>max_position?max_position:new_position);
 				moveOverInputMatchItem(obj_count,$(".input-match-box li").eq(new_position));
@@ -465,7 +465,7 @@
 		}
 	}
 
-	
+
 
 
 	//工具函数闭包内使用
